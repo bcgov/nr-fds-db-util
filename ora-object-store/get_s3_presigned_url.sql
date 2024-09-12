@@ -2,13 +2,18 @@ clear scr
 set define off
 set serveroutput on
 
-GRANT EXECUTE ON utl_i18n        TO the;
-GRANT EXECUTE ON dbms_crypto     TO the;
-GRANT EXECUTE ON utl_raw         TO the;
-GRANT EXECUTE ON sys_extract_utc TO the;
-GRANT EXECUTE ON utl_url         TO the;
-GRANT EXECUTE ON RAWTOHEX        TO the;
+/* *********************************************************************************
+   Run these grants as a user with DBA privs
+************************************************************************************ */
+GRANT EXECUTE ON sys.utl_i18n        TO the;
+GRANT EXECUTE ON sys.dbms_crypto     TO the;
+GRANT EXECUTE ON sys.utl_raw         TO the;
+GRANT EXECUTE ON sys.utl_url         TO the;
 
+/* *********************************************************************************
+   Create this function logged in as the owning schema.
+   If schema is new, create schema first.
+************************************************************************************ */
 CREATE OR REPLACE 
 FUNCTION get_s3_presigned_url(p_bucket         IN VARCHAR2
                             , p_object         IN VARCHAR2
