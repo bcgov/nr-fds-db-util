@@ -1,14 +1,9 @@
-clear scr
 set define off
-set serveroutput on
 
-GRANT EXECUTE ON utl_i18n        TO the;
-GRANT EXECUTE ON dbms_crypto     TO the;
-GRANT EXECUTE ON utl_raw         TO the;
-GRANT EXECUTE ON sys_extract_utc TO the;
-GRANT EXECUTE ON utl_url         TO the;
-GRANT EXECUTE ON RAWTOHEX        TO the;
-
+/* *********************************************************************************
+   Create this function logged in as the owning schema.
+   If schema is new, create schema first.
+************************************************************************************ */
 CREATE OR REPLACE 
 FUNCTION get_s3_presigned_url(p_bucket         IN VARCHAR2
                             , p_object         IN VARCHAR2
@@ -162,7 +157,7 @@ END;
 
 select get_s3_presigned_url(p_bucket => 'rlosde'
                           , p_object => '/resultsvctesttag2.jpg'
-                          , p_public_key => 'nr-results-large-object-storage-del'
+                          , p_public_key => 'xxxxxxx'
                           , p_secret_key => 'xxxxxxx'
                           , p_host => 'nrs.objectstore.gov.bc.ca') 
   from dual;
