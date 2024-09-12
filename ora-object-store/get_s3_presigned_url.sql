@@ -155,6 +155,8 @@ BEGIN
 END;
 /
 
+GRANT EXECUTE ON get_s3_presigned_url TO the;
+
 select get_s3_presigned_url(p_bucket => 'rlosde'
                           , p_object => '/resultsvctesttag2.jpg'
                           , p_public_key => 'xxxxxxx'
