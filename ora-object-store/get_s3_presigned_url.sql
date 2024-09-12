@@ -1,14 +1,4 @@
-clear scr
 set define off
-set serveroutput on
-
-/* *********************************************************************************
-   Run these grants as a user with DBA privs
-************************************************************************************ */
-GRANT EXECUTE ON sys.utl_i18n        TO the;
-GRANT EXECUTE ON sys.dbms_crypto     TO the;
-GRANT EXECUTE ON sys.utl_raw         TO the;
-GRANT EXECUTE ON sys.utl_url         TO the;
 
 /* *********************************************************************************
    Create this function logged in as the owning schema.
@@ -167,7 +157,7 @@ END;
 
 select get_s3_presigned_url(p_bucket => 'rlosde'
                           , p_object => '/resultsvctesttag2.jpg'
-                          , p_public_key => 'nr-results-large-object-storage-del'
+                          , p_public_key => 'xxxxxxx'
                           , p_secret_key => 'xxxxxxx'
                           , p_host => 'nrs.objectstore.gov.bc.ca') 
   from dual;
